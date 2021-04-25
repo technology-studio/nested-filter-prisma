@@ -16,7 +16,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - uses: tokusumi/markdown-embed-code@main
+      - uses: technology-studio-forks/markdown-embed-code@main
         with:
           markdown: "README.md"
           token: ${{ secrets.GITHUB_TOKEN }}
