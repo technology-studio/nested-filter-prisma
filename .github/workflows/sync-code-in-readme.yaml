@@ -14,12 +14,29 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+          persist-credentials: false
+          fetch-depth: 0
 
       - uses: tokusumi/markdown-embed-code@main
         with:
           markdown: "README.md"
-          token: ${{ secrets.GITHUB_TOKEN }}
+#          token: ${{ secrets.GITHUB_TOKEN }}
           message: "synchronizing Readme"
-          silent: true
+#          silent: true
+      - name: Check modified (success if not changed, failure if the other)
+        id: modified
+        run: if [[ $(git status --porcelain | wc -l) != "0" ]]; then exit 1; fi
+        continue-on-error: true
+
+      - name: Commit files
+        if: steps.modified.outcome == 'failure'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Embedding code into Markdown" -a
+      - name: Push changes
+        if: steps.modified.outcome == 'failure'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}
