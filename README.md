@@ -64,7 +64,7 @@ export type Context = {
 ```
 
 #### **`Context.ts`**
-```typescript
+```typescript:example/Context.ts [7]
 import { createNestedFilterMap } from '@txo/nested-filter-prisma'
 import { PrismaClient } from '@prisma/client'
 
