@@ -52,8 +52,8 @@ query {
 }
 ```
 
-#### **`Types/Context.ts`**
-```typescript
+#### **`ContextType.ts`**
+```typescript:
 import type { PrismaClient } from '@prisma/client'
 import type { NestedFilterMap } from '@txo/nested-filter-prisma'
 
@@ -63,39 +63,24 @@ export type Context = {
 }
 ```
 
-#### **`context.ts`**
+#### **`Context.ts`**
 ```typescript
 import { createNestedFilterMap } from '@txo/nested-filter-prisma'
-import type { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
-import type { Context } from './Types/ContextType'
+import type { Context } from './ContextType'
 import { nestedFilterList } from './NestedFilters'
 
 export function createContext (): Context {
   return {
-    prisma: new PrismaClient({}}),
+    prisma: new PrismaClient({}),
     nestedFilterMap: createNestedFilterMap(nestedFilterList),
   }
 }
 ```
 
 #### **`NestedFilters.ts`**
-```typescript
-import { nestedFilter } from from '@txo/nested-filter-prisma'
-
-import type { Context } from './Types/ContextType'
-
-export const CommentNestedFilter = nestedFilter<Context>({
-  type: 'Comment',
-  map: {
-    'Post.id': 'post.id',
-    'Author.id': 'author.id',
-  },
-})
-
-export const nestedFilterList = [
-  CommentNestedFilter,
-]
+```typescript:example/NestedFilter.ts [7]
 ```
 
 
@@ -103,7 +88,7 @@ export const nestedFilterList = [
 ```typescript
 import { nonNull, extendType } from 'nexus'
 
-import { withNestedFilters } from from '@txo/nested-filter-prisma'
+import { withNestedFilters } from '@txo/nested-filter-prisma'
 
 export const authorCommentListField = extendType({
   type: 'Author',
@@ -111,7 +96,7 @@ export const authorCommentListField = extendType({
     t.list.field('commentList', {
       type: 'Comment',
       resolve: withNestedFilters({
-        map: {
+        mapping: {
           'Post.id': true,
           'Author.id': true,
         },
