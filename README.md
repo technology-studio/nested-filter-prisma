@@ -53,7 +53,7 @@ query {
 ```
 
 #### **`ContextType.ts`**
-```typescript:
+```typescript
 import type { PrismaClient } from '@prisma/client'
 import type { NestedFilterMap } from '@txo/nested-filter-prisma'
 
@@ -68,7 +68,7 @@ export type Context = {
 ```
 
 #### **`NestedFilters.ts`**
-```typescript:example/NestedFilter.ts [7]
+```typescript:example/NestedFilters.ts [7]
 ```
 
 
