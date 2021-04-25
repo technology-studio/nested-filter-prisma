@@ -65,18 +65,6 @@ export type Context = {
 
 #### **`Context.ts`**
 ```typescript:example/Context.ts [7]
-import { createNestedFilterMap } from '@txo/nested-filter-prisma'
-import { PrismaClient } from '@prisma/client'
-
-import type { Context } from './ContextType'
-import { nestedFilterList } from './NestedFilters'
-
-export function createContext (): Context {
-  return {
-    prisma: new PrismaClient({}),
-    nestedFilterMap: createNestedFilterMap(nestedFilterList),
-  }
-}
 ```
 
 #### **`NestedFilters.ts`**
