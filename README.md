@@ -1,4 +1,4 @@
-# Nested filter prisma #
+# Nested filter prisma
 
 Nested filters allow automatically filter data resolved for projections based on hierarchy of parent queries or mutations
 
@@ -65,12 +65,40 @@ export type Context = {
 
 #### **`Context.ts`**
 ```typescript:example/Context.ts [7]
+import { createNestedFilterMap } from '@txo/nested-filter-prisma/src'
+import { PrismaClient } from '@prisma/client'
+
+import type { Context } from './ContextType'
+import { nestedFilterList } from './NestedFilters'
+
+export function createContext (): Context {
+  return {
+    prisma: new PrismaClient({}),
+    nestedFilterMap: createNestedFilterMap(nestedFilterList),
+  }
+}
+
 ```
 
 #### **`NestedFilters.ts`**
 ```typescript:example/NestedFilters.ts [7]
-```
+import { nestedFilter } from '@txo/nested-filter-prisma/src'
 
+import type { Context } from './ContextType'
+
+export const CommentNestedFilter = nestedFilter<Context>({
+  type: 'Comment',
+  mapping: {
+    'Post.id': 'post.id',
+    'Author.id': 'author.id',
+  },
+})
+
+export const nestedFilterList = [
+  CommentNestedFilter,
+]
+
+```
 
 #### **`Field declaration on Author type`**
 ```typescript
