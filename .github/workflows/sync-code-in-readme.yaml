@@ -16,7 +16,9 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-
+      - name: Dump docker logs on failure
+        if: failure()
+        uses: jwalton/gh-docker-logs@v1
       - uses: tokusumi/markdown-embed-code@main
         with:
           markdown: "README.md"
