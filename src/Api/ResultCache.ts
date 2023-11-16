@@ -8,7 +8,7 @@ import type { CacheKey, Type, ResultCache } from '../Model/Types'
 
 export class ResultCacheImpl implements ResultCache {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-  _cache: Record<Type, Record<string, unknown>> = {} as Record<Type, Record<string, unknown>>
+  _cache: Record<Type, Record<string, unknown> | undefined> = {} as Record<Type, Record<string, unknown> | undefined>
 
   resetCache (): void {
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
@@ -24,9 +24,11 @@ export class ResultCacheImpl implements ResultCache {
   )
 
   addResultToCache = <VALUE>(type: Type, key: CacheKey, value: VALUE): void => {
-    if (!(type in this._cache)) {
-      this._cache[type] = {}
+    let typeCache = this._cache[type]
+    if (typeCache == null) {
+      typeCache = {}
+      this._cache[type] = typeCache
     }
-    this._cache[type][String(key)] = value
+    typeCache[String(key)] = value
   }
 }
