@@ -20,7 +20,7 @@ import { MappingResultMode } from '../Model'
 import { resolveMapping, resolveMappingValue } from './Mapping'
 
 const containsWhere = <ARGS>(args: ARGS): args is ARGS & { where: unknown } => (
-  args && 'where' in args
+  args && typeof args === 'object' && 'where' in args
 )
 
 export const withNestedFilters = async <TYPE extends Type>({
