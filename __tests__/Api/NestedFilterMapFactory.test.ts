@@ -11,7 +11,9 @@ import {
   traverseNestedFilterCollection,
 } from '@txo/nested-filter-prisma'
 
-import { CommentNestedFilter, CommentNestedFilterExtended } from '../../example/NestedFilters'
+import {
+  CommentNestedFilter, CommentNestedFilterExtended,
+} from '../../example/NestedFilters'
 
 describe('NestedFilterMapFactory', () => {
   test('traverseNestedFilterCollection - traverse nested collections and visit each filter only once', () => {

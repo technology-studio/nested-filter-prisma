@@ -4,10 +4,15 @@
  * @Copyright: Technology Studio
 **/
 
-import type { Post, Author, Comment } from '@prisma/client'
-import { NestedResultNode } from '@txo/nested-filter-prisma'
+import type {
+  Post, Author, Comment,
+} from '@prisma/client'
 import type { Context } from '@txo/prisma-graphql'
-import { GraphQLObjectType, GraphQLList, GraphQLResolveInfo, GraphQLString } from 'graphql'
+import {
+  GraphQLObjectType, GraphQLList, type GraphQLResolveInfo, GraphQLString,
+} from 'graphql'
+
+import { type NestedResultNode } from '@txo/nested-filter-prisma'
 
 const cloneAndAddResult = (node: NestedResultNode, pathList: string[], resultNode: NestedResultNode): NestedResultNode => {
   if (pathList.length > 1) {

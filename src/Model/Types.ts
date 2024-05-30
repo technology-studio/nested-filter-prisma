@@ -5,7 +5,9 @@
  * @Copyright: Technology Studio
 **/
 
-import type { ResolverArguments, PluginOptions } from '@txo-peer-dep/nested-filter-prisma'
+import type {
+  ResolverArguments, PluginOptions,
+} from '@txo-peer-dep/nested-filter-prisma'
 
 import type {
   TypeIgnoreRuleMode,
@@ -157,8 +159,8 @@ export type GetNestedResultAttributes<TYPE extends Type, EXTRA_TYPE = unknown> =
 }
 
 export const enum AddNestedResutMode {
-  CURRENT='current',
-  CHILDREN='children',
+  CURRENT = 'current',
+  CHILDREN = 'children',
 }
 
 export type AddNestedResultAttributes<TYPE extends Type> = {

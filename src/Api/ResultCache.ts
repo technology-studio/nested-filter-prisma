@@ -4,7 +4,9 @@
  * @Copyright: Technology Studio
 **/
 
-import type { CacheKey, Type, ResultCache } from '../Model/Types'
+import type {
+  CacheKey, Type, ResultCache,
+} from '../Model/Types'
 
 export class ResultCacheImpl implements ResultCache {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions

@@ -4,7 +4,7 @@
  * @Copyright: Technology Studio
 **/
 
-import { NestedFilterDefinitionMode } from '../Model'
+import { type NestedFilterDefinitionMode } from '../Model'
 import type {
   NestedFilterDeclaration,
   NestedFilterCollection,

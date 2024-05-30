@@ -5,6 +5,10 @@
 **/
 
 import {
+  type Author, type Comment, type Post,
+} from '@prisma/client'
+
+import {
   ignored,
   mapFilter,
   mapValue,
@@ -23,7 +27,6 @@ import {
   LEVEL_2_POST_COMMENT_NESTED_RESULT_NODE,
   LEVEL_3_COMMENT_LIST_INFO, LEVEL_3_POST_COMMENT_AUTHOR_NESTED_RESULT_NODE, POST, SOME_TEXT,
 } from '../Data'
-import { Author, Comment, Post } from '@prisma/client'
 
 describe('WithNestedFilters', () => {
   test('withNestedFilters - no parent entities', async () => {
@@ -43,8 +46,8 @@ describe('WithNestedFilters', () => {
     }, undefined, undefined, LEVEL_0_POST_INFO, { rootNestedResultNode: LEVEL_0_RESULT_NODE })
   })
 
-  test('withNestedFilters - throw exception for not mapped parent entity', async () => {
-    return expect(
+  test('withNestedFilters - throw exception for not mapped parent entity', async () => (
+    expect(
       invokeResolver<Author, undefined, Comment[]>(async (source, args, context, info) => {
         await context.withNestedFilters({
           type: 'Comment',
@@ -55,7 +58,7 @@ describe('WithNestedFilters', () => {
         return [COMMENT_1]
       }, AUTHOR, undefined, LEVEL_3_COMMENT_LIST_INFO, { rootNestedResultNode: LEVEL_3_POST_COMMENT_AUTHOR_NESTED_RESULT_NODE }),
     ).rejects.toThrow(/^Comment nested filter doesn't contain mapping for following types \(Author\)\.$/)
-  })
+  ))
 
   test('withNestedFilters - should not throw exception for suppresed parent entities', async () => {
     await invokeResolver<Author, undefined, Comment[]>(async (source, args, context, info) => {
@@ -78,8 +81,8 @@ describe('WithNestedFilters', () => {
     }, AUTHOR, undefined, LEVEL_3_COMMENT_LIST_INFO, { rootNestedResultNode: LEVEL_3_POST_COMMENT_AUTHOR_NESTED_RESULT_NODE })
   })
 
-  test('withNestedFilters - throw exception for not mapped parent entity if suppressed doesn\'t contain value', async () => {
-    return expect(
+  test('withNestedFilters - throw exception for not mapped parent entity if suppressed doesn\'t contain value', async () => (
+    expect(
       invokeResolver<Record<string, unknown>, undefined, Comment[]>(async (source, args, context, info) => {
         const where = await context.withNestedFilters({
           type: 'Comment',
@@ -95,7 +98,7 @@ describe('WithNestedFilters', () => {
         return [COMMENT_1]
       }, {}, undefined, LEVEL_3_COMMENT_LIST_INFO, { rootNestedResultNode: LEVEL_3_POST_COMMENT_AUTHOR_NESTED_RESULT_NODE }),
     ).rejects.toThrow(/^Comment nested filter doesn't contain mapping for following types \(Post,Author\)\.$/)
-  })
+  ))
 
   test('withNestedFilters - should not throw exception for ignored parent entities', async () => {
     await invokeResolver<Author, undefined, Comment[]>(async (source, args, context, info) => {
@@ -118,8 +121,8 @@ describe('WithNestedFilters', () => {
     }, AUTHOR, undefined, LEVEL_3_COMMENT_LIST_INFO, { rootNestedResultNode: LEVEL_3_POST_COMMENT_AUTHOR_NESTED_RESULT_NODE })
   })
 
-  test('withNestedFilters - throw exception for not mapped parent entity if suppressed contains value, but mapping is missing', async () => {
-    return expect(
+  test('withNestedFilters - throw exception for not mapped parent entity if suppressed contains value, but mapping is missing', async () => (
+    expect(
       invokeResolver<Author, undefined, Comment[]>(async (source, args, context, info) => {
         const where = await context.withNestedFilters({
           type: 'Comment',
@@ -134,7 +137,7 @@ describe('WithNestedFilters', () => {
         return [COMMENT_1]
       }, AUTHOR, undefined, LEVEL_3_COMMENT_LIST_INFO, { rootNestedResultNode: LEVEL_3_POST_COMMENT_AUTHOR_NESTED_RESULT_NODE }),
     ).rejects.toThrow(/^Comment nested filter doesn't contain mapping for following types \(Post,Author\)\.$/)
-  })
+  ))
 
   test('withNestedFilters - with two parent entities with mapValue', async () => {
     await invokeResolver<Author, undefined, Comment[]>(async (source, args, context, info) => {

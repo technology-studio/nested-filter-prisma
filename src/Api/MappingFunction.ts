@@ -9,11 +9,11 @@ import { Log } from '@txo/log'
 import type { ResolverArguments } from '@txo-peer-dep/nested-filter-prisma'
 
 import {
-  MappingResult,
+  type MappingResult,
   MappingResultMode,
-  MappingResultOptions,
-  Type,
-  TypeAttributePath,
+  type MappingResultOptions,
+  type Type,
+  type TypeAttributePath,
 } from '../Model'
 
 import { resolveMappingValue } from './Mapping'

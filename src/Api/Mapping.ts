@@ -5,16 +5,16 @@
 **/
 
 import { is } from '@txo/types'
-import { ResolverArguments } from '@txo-peer-dep/nested-filter-prisma'
+import { type ResolverArguments } from '@txo-peer-dep/nested-filter-prisma'
 import { Log } from '@txo/log'
 
 import {
-  MappingResult,
-  MappingResultMap,
+  type MappingResult,
+  type MappingResultMap,
   MappingResultMode,
-  MappingResultOptions,
-  NestedFilterMapping,
-  Type,
+  type MappingResultOptions,
+  type NestedFilterMapping,
+  type Type,
 } from '../Model'
 
 const log = new Log('txo.nested-filter-prisma.Api.Mapping')

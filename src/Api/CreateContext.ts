@@ -4,10 +4,12 @@
  * @Copyright: Technology Studio
 **/
 
-import { PrismaClient } from '@prisma/client'
+import { type PrismaClient } from '@prisma/client'
 import type { Context } from '@txo/prisma-graphql'
 
-import type { NestedFilterMap, ResultCache } from '../Model/Types'
+import type {
+  NestedFilterMap, ResultCache,
+} from '../Model/Types'
 
 type CreateContextAttributes = {
   prisma: PrismaClient,

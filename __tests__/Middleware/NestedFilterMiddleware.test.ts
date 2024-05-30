@@ -4,9 +4,12 @@
  * @Copyright: Technology Studio
 **/
 
-import { Post, Comment } from '@prisma/client'
+import {
+  type Post, type Comment,
+} from '@prisma/client'
 import type { GraphQLResolveInfo } from 'graphql'
 import type { Context } from '@txo/prisma-graphql'
+
 import { mapValue } from '@txo/nested-filter-prisma'
 
 import {
@@ -21,7 +24,6 @@ import {
 import {
   nestedFilterMiddleware,
 } from '../Utils'
-
 import { createContext } from '../../example/Context'
 
 describe('NestedFilterMiddleware', () => {
