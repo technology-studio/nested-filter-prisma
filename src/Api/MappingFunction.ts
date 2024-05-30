@@ -69,6 +69,7 @@ export const mapFilter = (
     throw new Error(`mapping for type (${type}) in nested filter (${filterType}) is not declared`)
   }
 
+  // eslint-disable-next-line @typescript-eslint/return-await
   return resolveMappingValue(
     type,
     mappingValue,

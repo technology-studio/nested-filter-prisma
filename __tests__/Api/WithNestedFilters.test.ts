@@ -47,6 +47,7 @@ describe('WithNestedFilters', () => {
   })
 
   test('withNestedFilters - throw exception for not mapped parent entity', async () => (
+    // eslint-disable-next-line @typescript-eslint/return-await
     expect(
       invokeResolver<Author, undefined, Comment[]>(async (source, args, context, info) => {
         await context.withNestedFilters({
@@ -82,6 +83,7 @@ describe('WithNestedFilters', () => {
   })
 
   test('withNestedFilters - throw exception for not mapped parent entity if suppressed doesn\'t contain value', async () => (
+    // eslint-disable-next-line @typescript-eslint/return-await
     expect(
       invokeResolver<Record<string, unknown>, undefined, Comment[]>(async (source, args, context, info) => {
         const where = await context.withNestedFilters({
@@ -122,6 +124,7 @@ describe('WithNestedFilters', () => {
   })
 
   test('withNestedFilters - throw exception for not mapped parent entity if suppressed contains value, but mapping is missing', async () => (
+    // eslint-disable-next-line @typescript-eslint/return-await
     expect(
       invokeResolver<Author, undefined, Comment[]>(async (source, args, context, info) => {
         const where = await context.withNestedFilters({
