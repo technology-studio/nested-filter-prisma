@@ -22,7 +22,7 @@ export const addNestedResultFactory = (
 ) => <TYPE extends Type>({
   type, result, mode,
 }: AddNestedResultAttributes<TYPE>): void => {
-  if (nestedResultNode) {
+  if (nestedResultNode != null) {
     if (mode === AddNestedResutMode.CHILDREN) {
       nestedResultNode.childrenNestedArgMap[type] = result
     } else {

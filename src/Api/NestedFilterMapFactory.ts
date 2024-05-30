@@ -21,13 +21,13 @@ import { createNestedFilter } from './NestedFilter'
 const isNestedFilterDefinition = (
   collection: NestedFilterCollection,
 ): collection is NestedFilterDefinition => (
-  collection && typeof collection === 'object' && 'mode' in collection
+  collection != null && typeof collection === 'object' && 'mode' in collection
 )
 
 const isNestedFilterCollectionMap = (
   collection: NestedFilterCollection,
 ): collection is { [key: string]: NestedFilterCollection } => (
-  collection && typeof collection === 'object' && !('mode' in collection)
+  collection != null && typeof collection === 'object' && !('mode' in collection)
 )
 
 export const traverseNestedFilterCollection = (
@@ -101,7 +101,7 @@ export const produceNestedFilterDeclarationMap = (
   const declarationMap: Record<string, NestedFilterDeclaration<Type>> = {}
   traverseNestedFilterCollection(collection, ({ mode, declaration }) => {
     const existingDeclaration = declarationMap[declaration.type]
-    if (existingDeclaration) {
+    if (existingDeclaration != null) {
       declarationMap[declaration.type] = mergeNestedFilterDeclarations(
         existingDeclaration,
         declaration,

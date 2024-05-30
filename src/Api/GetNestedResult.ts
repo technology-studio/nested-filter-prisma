@@ -23,7 +23,7 @@ export const getNestedResultFactory = (
     return nestedArgMap[type]
   }
 
-  if (onGet) {
+  if (onGet != null) {
     let result
     if (cacheKey !== undefined && resolverContext.resultCache.isResultCached(type, cacheKey)) {
       result = resolverContext.resultCache.getCachedResult(type, cacheKey)

@@ -86,7 +86,7 @@ export const reportMissingNestedFilters = (
   const typeMappingMap: Record<string, TypeMapping> = {}
   const getOrCreate = (type: string): TypeMapping => {
     let typeMapping = typeMappingMap[type]
-    if (!typeMapping) {
+    if (typeMapping == null) {
       typeMapping = {
         usageSet: new Set(),
       }
@@ -105,7 +105,7 @@ export const reportMissingNestedFilters = (
     mappingResultMapList.forEach(mappingResultMap => {
       Object.keys(mappingResultMap).forEach(type => {
         const mappingResult = mappingResultMap[type as Type]
-        if (mappingResult) {
+        if (mappingResult != null) {
           const {
             mode,
             options: {
@@ -114,8 +114,8 @@ export const reportMissingNestedFilters = (
             },
           } = mappingResult
           if (mode !== MappingResultMode.INVALID) {
-            onIgnore && typeIgnoreRuleList.forEach(onIgnore)
-            onUsage && typeUsageRuleList.forEach(onUsage)
+            (onIgnore != null) && typeIgnoreRuleList.forEach(onIgnore)
+            ;(onUsage != null) && typeUsageRuleList.forEach(onUsage)
           }
         }
       })
