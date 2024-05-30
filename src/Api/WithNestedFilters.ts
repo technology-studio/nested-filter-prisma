@@ -24,7 +24,7 @@ import {
 } from './Mapping'
 
 const containsWhere = <ARGS>(args: ARGS): args is ARGS & { where: unknown } => (
-  args && typeof args === 'object' && 'where' in args
+  args != null && typeof args === 'object' && 'where' in args
 )
 
 export const withNestedFilters = async <TYPE extends Type>({
@@ -46,7 +46,7 @@ export const withNestedFilters = async <TYPE extends Type>({
   excludeArgsWhere?: boolean,
 }): Promise<GetWhere<TYPE>> => {
   const subWhereList = []
-  if (containsWhere(resolverArguments.args) && !excludeArgsWhere) {
+  if (containsWhere(resolverArguments.args) && excludeArgsWhere == null) {
     subWhereList.push(resolverArguments.args.where)
   }
   const mappingResultMap = await resolveMapping(
@@ -54,7 +54,7 @@ export const withNestedFilters = async <TYPE extends Type>({
     resolverArguments,
   )
 
-  if (where) {
+  if (where != null) {
     const whereResult = await resolveMappingValue(
       type,
       where,
@@ -70,7 +70,7 @@ export const withNestedFilters = async <TYPE extends Type>({
   }
 
   let mappingResultMapList = typeToMappingResultMapList[type]
-  if (!mappingResultMapList) {
+  if (mappingResultMapList == null) {
     mappingResultMapList = []
     typeToMappingResultMapList[type] = mappingResultMapList
   }
@@ -81,12 +81,12 @@ export const withNestedFilters = async <TYPE extends Type>({
 
   Object.keys(mappingResultMap).forEach(type => {
     const mappingResult = mappingResultMap[type as Type]
-    if (mappingResult) {
+    if (mappingResult != null) {
       const { mode, where } = mappingResult
       switch (mode) {
         case MappingResultMode.ASSIGN:
         case MappingResultMode.MERGE: {
-          if (type in nestedArgMap && where) {
+          if (type in nestedArgMap && where != null) {
             subWhereList.push(where)
           }
           break

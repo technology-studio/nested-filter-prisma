@@ -28,13 +28,13 @@ import { getNestedResultFactory } from '../Api/GetNestedResult'
 const log = new Log('txo.nested-filter-prisma.Middleware.NestedFilterMiddleware')
 
 const getPathList = (path: GraphQLResolveInfo['path']): string[] => [
-  ...(path.prev ? getPathList(path.prev) : []),
+  ...((path.prev != null) ? getPathList(path.prev) : []),
   path.key.toString(),
 ]
 
 const getOrCreateNode = (map: NestedResultMap, key: string): NestedResultNode => {
   const value = map[key]
-  if (!value) {
+  if (value == null) {
     map[key] = { children: {}, nestedArgMap: {}, childrenNestedArgMap: {} }
   }
   return map[key]
@@ -46,7 +46,7 @@ const setNestedResultAndGetNestedArgMap = (
   nestedArgMap: NestedArgMap,
   currentNestedResultNode: NestedResultNode | undefined,
 ): NestedArgMap => {
-  if (!pathList.length) {
+  if (pathList.length === 0) {
     throw new Error('Empty path')
   }
   const [key, ...restPathList] = pathList
@@ -62,7 +62,7 @@ const setNestedResultAndGetNestedArgMap = (
     } = childNestedResultNode
 
     log.debug('setNestedResultAndGetNestedArgMap child', { key, childNestedResultNode })
-    if (type && result) {
+    if (type != null && result != null) {
       nestedArgMap[type] = childNestedResultNode.result
     }
 
@@ -83,7 +83,7 @@ const setNestedResultAndGetNestedArgMap = (
     }
   }
 
-  if (currentNestedResultNode) {
+  if (currentNestedResultNode != null) {
     nestedResultNode.children[key] = currentNestedResultNode
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     nestedArgMap[currentNestedResultNode.type!] = currentNestedResultNode.result

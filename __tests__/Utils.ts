@@ -34,7 +34,7 @@ export const invokeResolver = async <SOURCE, ARGS, RESULT>(
   },
 ): Promise<{ context: Context, result: RESULT }> => {
   const context: Context = options?.context ?? createContext(options)
-  if (options?.rootNestedResultNode && !options?.context) {
+  if (((options?.rootNestedResultNode) != null) && ((options?.context) == null)) {
     context.rootNestedResultNode = JSON.parse(JSON.stringify(options.rootNestedResultNode))
   }
   return {

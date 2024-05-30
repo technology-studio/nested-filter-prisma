@@ -128,7 +128,7 @@ export const resolveMappingValue = async (
         // eslint-disable-next-line @typescript-eslint/return-await
         return resolveArrayMappingValue(type, mappingValue, resultOptions, resolverArguments)
       }
-      if (mappingValue) {
+      if (mappingValue != null) {
         // eslint-disable-next-line @typescript-eslint/return-await
         return resolveObjectMappingValue(type, mappingValue as Record<string, unknown>, resultOptions, resolverArguments)
       }

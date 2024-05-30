@@ -61,11 +61,11 @@ export const mapFilter = (
 ): Promise<MappingResult<WHERE>> => {
   log.debug('mapFilter', { filterType, type, resultOptions, nestedArgMap: resolverArguments.context.nestedArgMap })
   const nestedFilter = resolverArguments.context.nestedFilterMap[filterType]
-  if (!nestedFilter) {
+  if (nestedFilter == null) {
     throw new Error(`nested filter (${filterType}) is not registered yet`)
   }
   const mappingValue = nestedFilter.declaration.mapping[type]
-  if (!mappingValue) {
+  if (mappingValue == null) {
     throw new Error(`mapping for type (${type}) in nested filter (${filterType}) is not declared`)
   }
 
