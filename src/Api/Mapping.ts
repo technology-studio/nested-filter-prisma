@@ -125,11 +125,11 @@ export const resolveMappingValue = async (
   switch (typeof mappingValue) {
     case 'object': {
       if (Array.isArray(mappingValue)) {
-        // eslint-disable-next-line @typescript-eslint/return-await
+        // eslint-disable-next-line @typescript-eslint/return-await -- check if we need to ignore await
         return resolveArrayMappingValue(type, mappingValue, resultOptions, resolverArguments)
       }
       if (mappingValue) {
-        // eslint-disable-next-line @typescript-eslint/return-await
+        // eslint-disable-next-line @typescript-eslint/return-await -- check if we need to ignore await
         return resolveObjectMappingValue(type, mappingValue as Record<string, unknown>, resultOptions, resolverArguments)
       }
       break
