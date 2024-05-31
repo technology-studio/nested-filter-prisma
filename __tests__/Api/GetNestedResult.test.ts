@@ -29,6 +29,7 @@ describe('getNestedResult', () => {
   })
 
   test('getNestedResult - throw exception for existing result', async () => (
+    // eslint-disable-next-line @typescript-eslint/return-await -- check if we need to ignore await
     expect(
       invokeResolver<Post, undefined, string>(async (source, args, context, info) => {
         const result = await context.getNestedResult({ type: 'Author' })

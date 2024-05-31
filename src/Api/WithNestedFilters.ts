@@ -129,6 +129,7 @@ export const withNestedFiltersFactory = (
     ...resolverArguments.context.nestedFilterMap[type]?.declaration.mapping,
     ...mapping,
   }
+  // eslint-disable-next-line @typescript-eslint/return-await -- check if we need to ignore await
   return withNestedFilters({
     mapping: mergedMapping,
     type, // TODO: validate, removing probably not desired type retrieval from info ->  info.path.typename as Type,
