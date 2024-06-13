@@ -48,7 +48,7 @@ describe('getNestedResult', () => {
       expect(result).toEqual(AUTHOR)
       return source.id
     }, POST, undefined, LEVEL_1_ID_INFO, { rootNestedResultNode: LEVEL_1_POST_NESTED_RESULT_NODE })
-    expect(onGet).toBeCalledTimes(1)
+    expect(onGet).toHaveBeenCalledTimes(1)
   })
 
   test('getNestedResult - return null value', async () => {
@@ -59,7 +59,7 @@ describe('getNestedResult', () => {
       expect(result).toEqual(null)
       return source.id
     }, POST, undefined, LEVEL_1_ID_INFO, { rootNestedResultNode: LEVEL_1_POST_NESTED_RESULT_NODE })
-    expect(onGet).toBeCalledTimes(1)
+    expect(onGet).toHaveBeenCalledTimes(1)
   })
 
   test('getNestedResult - return explicitly added result value if add result enabled', async () => {
@@ -70,7 +70,7 @@ describe('getNestedResult', () => {
       expect(result).toEqual(AUTHOR)
       return source.id
     }, POST, undefined, LEVEL_1_ID_INFO, { rootNestedResultNode: LEVEL_1_POST_NESTED_RESULT_NODE })
-    expect(onGet).toBeCalledTimes(1)
+    expect(onGet).toHaveBeenCalledTimes(1)
   })
 
   test('getNestedResult - return cached value', async () => {
@@ -82,12 +82,12 @@ describe('getNestedResult', () => {
       return source.id
     }, POST, undefined, LEVEL_1_ID_INFO, { rootNestedResultNode: LEVEL_1_POST_NESTED_RESULT_NODE, resultCache })
 
-    expect(onGet).toBeCalledTimes(1)
+    expect(onGet).toHaveBeenCalledTimes(1)
     await invokeResolver<Post, undefined, string>(async (source, args, context, info) => {
       const result = await context.getNestedResult({ type: 'Author', onGet, cacheKey: AUTHOR.id })
       expect(result).toEqual(AUTHOR)
       return source.id
     }, POST, undefined, LEVEL_1_ID_INFO, { rootNestedResultNode: LEVEL_1_POST_NESTED_RESULT_NODE, resultCache })
-    expect(onGet).toBeCalledTimes(1)
+    expect(onGet).toHaveBeenCalledTimes(1)
   })
 })
