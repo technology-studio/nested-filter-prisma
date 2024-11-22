@@ -4,7 +4,9 @@
  * @Copyright: Technology Studio
 **/
 
-import { pluginManager, PluginOptions, ResolverArguments } from '@txo-peer-dep/nested-filter-prisma'
+import {
+  pluginManager, type PluginOptions, type ResolverArguments,
+} from '@txo-peer-dep/nested-filter-prisma'
 
 import type {
   NestedFilterMapping,
@@ -17,7 +19,9 @@ import type {
 import { MappingResultMode } from '../Model'
 
 // import { reportMissingNestedFilters } from './ReportNestedFilters'
-import { resolveMapping, resolveMappingValue } from './Mapping'
+import {
+  resolveMapping, resolveMappingValue,
+} from './Mapping'
 
 const containsWhere = <ARGS>(args: ARGS): args is ARGS & { where: unknown } => (
   args && typeof args === 'object' && 'where' in args

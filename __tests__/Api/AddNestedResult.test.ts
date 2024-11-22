@@ -4,6 +4,12 @@
  * @Copyright: Technology Studio
 **/
 
+import {
+  type Comment, type Post,
+} from '@prisma/client'
+
+import { AddNestedResutMode } from '@txo/nested-filter-prisma'
+
 import { invokeResolver } from '../Utils'
 import {
   POST,
@@ -14,8 +20,6 @@ import {
   LEVEL_0_RESULT_NODE,
   LEVEL_1_COMMENT_LIST_INFO,
 } from '../Data'
-import { Comment, Post } from '@prisma/client'
-import { AddNestedResutMode } from '@txo/nested-filter-prisma'
 
 describe('addNestedResult', () => {
   test('addNestedResult - add result with children mode, result not available for current resolver', async () => {

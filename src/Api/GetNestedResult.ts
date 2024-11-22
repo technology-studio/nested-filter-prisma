@@ -4,13 +4,14 @@
  * @Copyright: Technology Studio
 **/
 
+import type { Context } from '@txo/prisma-graphql'
+
 import type {
   CacheKey,
   GetNestedResultAttributes,
   GetStructure,
   NestedArgMap, Type,
 } from '../Model/Types'
-import type { Context } from '@txo/prisma-graphql'
 
 export const getNestedResultFactory = (
   resolverContext: Context,

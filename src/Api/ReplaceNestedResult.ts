@@ -4,8 +4,11 @@
  * @Copyright: Technology Studio
 **/
 
-import type { GetStructure, NestedResultNode, ReplaceNestedResultAttributes, Type } from '../Model/Types'
 import type { Context } from '@txo/prisma-graphql'
+
+import type {
+  GetStructure, NestedResultNode, ReplaceNestedResultAttributes, Type,
+} from '../Model/Types'
 
 const replaceNestedResult = <TYPE extends Type>(
   { nestedArgMap, childrenNestedArgMap, children }: NestedResultNode,

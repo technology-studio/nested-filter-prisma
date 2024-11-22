@@ -6,9 +6,11 @@
 
 // import get from 'lodash.get'
 
-import { ResolverArguments } from '@txo-peer-dep/nested-filter-prisma'
+import { type ResolverArguments } from '@txo-peer-dep/nested-filter-prisma'
 
-import { TypeIgnoreRuleMode, MappingResultMode } from '../Model'
+import {
+  TypeIgnoreRuleMode, MappingResultMode,
+} from '../Model'
 import type {
   MappingResult,
   MappingResultMap,

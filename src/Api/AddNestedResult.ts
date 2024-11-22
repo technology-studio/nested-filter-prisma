@@ -4,15 +4,16 @@
  * @Copyright: Technology Studio
 **/
 
+import { Log } from '@txo/log'
+
 import {
-  AddNestedResultAttributes,
+  type AddNestedResultAttributes,
   AddNestedResutMode,
-  NestedArgMap,
-  NestedResultNode,
-  Type,
+  type NestedArgMap,
+  type NestedResultNode,
+  type Type,
 } from '../Model/Types'
 
-import { Log } from '@txo/log'
 const log = new Log('txo.nested-filter-prisma.src.Api.AddNestedResult')
 
 export const addNestedResultFactory = (

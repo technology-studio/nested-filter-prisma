@@ -4,7 +4,9 @@
  * @Copyright: Technology Studio
 **/
 
-import { Type, TypeAttributePath } from '../Model'
+import {
+  type Type, type TypeAttributePath,
+} from '../Model'
 
 export const parseTypeAttributePath = (typeAttributePath: TypeAttributePath): { type: Type, attribute: string } | undefined => {
   const typeAndAttributePair = (typeAttributePath as string).split('.')

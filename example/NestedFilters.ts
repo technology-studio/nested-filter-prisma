@@ -4,8 +4,13 @@
  * @Copyright: Technology Studio
 **/
 
-import { mapFilter, mapValue, nestedFilter } from '@txo/nested-filter-prisma'
-import { Prisma, Comment, Post, Author } from '@prisma/client'
+import {
+  type Prisma, type Comment, type Post, type Author,
+} from '@prisma/client'
+
+import {
+  mapFilter, mapValue, nestedFilter,
+} from '@txo/nested-filter-prisma'
 
 declare module '@txo/nested-filter-prisma' {
   export interface AllNestedFilters {

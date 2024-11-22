@@ -9,8 +9,8 @@ import type { Context } from '@txo/prisma-graphql'
 
 import {
   nestedFilterMiddlewareFactory,
-  NestedResultNode,
-  ResultCache,
+  type NestedResultNode,
+  type ResultCache,
 } from '@txo/nested-filter-prisma'
 
 import { createContext } from '../example/Context'

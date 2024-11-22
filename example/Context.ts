@@ -4,9 +4,12 @@
  * @Copyright: Technology Studio
 **/
 
-import { createNestedFilterMap, ResultCache, createContext as _createContext } from '@txo/nested-filter-prisma'
-import { PrismaClient } from '@prisma/client'
+import { type PrismaClient } from '@prisma/client'
 import type { Context } from '@txo/prisma-graphql'
+
+import {
+  createNestedFilterMap, type ResultCache, createContext as _createContext,
+} from '@txo/nested-filter-prisma'
 
 import { nestedFilterList } from './NestedFilters'
 

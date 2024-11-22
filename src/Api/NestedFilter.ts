@@ -5,25 +5,23 @@
 **/
 
 import {
-  NestedFilter,
-  NestedFilterDeclaration,
-  NestedFilterDefinition,
+  type NestedFilter,
+  type NestedFilterDeclaration,
+  type NestedFilterDefinition,
   NestedFilterDefinitionMode,
-  Type,
+  type Type,
 } from '../Model'
 
 export const nestedFilter = <TYPE extends Type>(
   declaration: NestedFilterDeclaration<TYPE>,
 ): NestedFilterDefinition => ({
-    mode: NestedFilterDefinitionMode.MERGE,
-    declaration,
-  })
+  mode: NestedFilterDefinitionMode.MERGE,
+  declaration,
+})
 
 export const createNestedFilter = (
   declaration: NestedFilterDeclaration<Type>,
-): NestedFilter => {
-  return {
-    type: declaration.type,
-    declaration,
-  }
-}
+): NestedFilter => ({
+  type: declaration.type,
+  declaration,
+})
