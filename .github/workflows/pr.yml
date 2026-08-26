@@ -1,0 +1,13 @@
+name: "PR"
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+
+jobs:
+  semantic-title:
+    name: "Semantic title"
+    uses: technology-studio/github-workflows/.github/workflows/_semantic-title.yml@main
+    secrets: inherit

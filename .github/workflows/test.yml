@@ -1,0 +1,15 @@
+name: 'Test'
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+jobs:
+  unit:
+    name: 'Unit test'
+    uses: technology-studio/github-workflows/.github/workflows/_unit-test.yml@main
+    secrets: inherit
